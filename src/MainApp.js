@@ -2,13 +2,14 @@
 
 import React from "react";
 import Container from "@mui/material/Container";
-import { Table, Typography, Box } from "@mui/material";
+import { Table, Typography, Box, Button } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 
 const MainApp = (props) => {
   return (
@@ -33,9 +34,9 @@ const MainApp = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {rows.map((row, i) => (
                 <TableRow
-                  key={row.name}
+                  key={i}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell>{row.username}</TableCell>
@@ -47,6 +48,13 @@ const MainApp = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Button sx={{ marginTop: 2 }} variant="contained">
+          <Link to="/" style={{ textDecoration: "none" }}>
+            Back to home
+          </Link>
+        </Button>
       </Box>
     </Container>
   );

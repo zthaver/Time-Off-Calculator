@@ -6,11 +6,13 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-
+import React from "react";
 import MainApp from "./MainApp";
 import CsvReader from "./CsvReader";
 
 function App() {
+  const [userData, setUserData] = React.useState(new Map());
+  console.log(userData);
   return (
     <>
       {/* This is the alias of BrowserRouter i.e. Router */}
@@ -18,7 +20,11 @@ function App() {
           with exact path "/", in component props 
           we passes the imported component*/}
       <Routes>
-        <Route exact path="/" element={<CsvReader />} />
+        <Route
+          exact
+          path="/"
+          element={<CsvReader setUserData={setUserData} />}
+        />
         <Route path="/main" element={<MainApp />} />
       </Routes>
     </>

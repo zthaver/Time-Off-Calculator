@@ -28,15 +28,69 @@ const styles = {
   },
 };
 
-function CsvReader() {
+function CsvReader(props) {
+  const [userData, setUserData] = React.useState(new Map());
+
   const { CSVReader } = useCSVReader();
+
   let navigate = useNavigate();
+
+  // get the quarter based on date
+  const getQuarter = (dateStr) => {
+    const date = new Date(dateStr);
+    return Math.floor(date.getMonth() / 3 + 1);
+  };
+
+  // to process the result
+  const processResult = (result) => {
+    for (let i = 1; i < result.length; i++) {
+      const username = result[i][0];
+      const type = result[i][2];
+      const quarter = getQuarter(result[i][1]);
+      // use for array
+      const quarterIndex = quarter - 1;
+      let newData = {};
+
+      // create new obj
+      if (!userData.has(username)) {
+        newData = {
+          pto: [0, 0, 0, 0],
+          sick: [0, 0, 0, 0],
+          Bereavement: [0, 0, 0, 0],
+        };
+        if (type === "pto") {
+          newData.pto[quarterIndex]++;
+        } else if (type === "Sick") {
+          newData.sick[quarterIndex]++;
+        } else {
+          newData.Bereavement[quarterIndex]++;
+        }
+
+        setUserData((map) => new Map(map.set(username, newData)));
+      } else {
+        // retrieve the existing data
+        newData = userData.get(username);
+        if (type === "pto") {
+          newData.pto[quarterIndex]++;
+        } else if (type === "Sick") {
+          newData.sick[quarterIndex]++;
+        } else {
+          newData.Bereavement[quarterIndex]++;
+        }
+        setUserData((map) => new Map(map.set(username, newData)));
+      }
+    }
+
+    props.setUserData(userData);
+  };
+
   return (
     <CSVReader
       onUploadAccepted={(results) => {
         console.log("---------------------------");
         console.log(results);
         console.log("---------------------------");
+        processResult(results.data);
         navigate("/main", { replace: true });
       }}
     >
