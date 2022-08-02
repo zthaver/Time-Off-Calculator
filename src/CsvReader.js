@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 
 import { useCSVReader } from "react-papaparse";
-import MainApp from "./MainAPp";
+import MainApp from "./MainApp";
 
 // for styling csv
 const styles = {
