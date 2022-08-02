@@ -1,7 +1,10 @@
 
-import React, { CSSProperties } from 'react';
-
+import React from 'react';
+import MainUi from './MainUI';
 import { useCSVReader } from 'react-papaparse';
+
+import {Routes, Route, useNavigate, Switch} from 'react-router-dom';
+
 
 const styles = {
   csvReader: {
@@ -30,12 +33,15 @@ const styles = {
 
 function CsvReader() {
   const { CSVReader } = useCSVReader();
+  let navigate = useNavigate();
   return (
+    <div>
     <CSVReader
       onUploadAccepted={(results) => {
         console.log('---------------------------');
         console.log(results);
         console.log('---------------------------');
+       navigate("/main",{replace:true})
       }}
     >
       {({
@@ -60,6 +66,10 @@ function CsvReader() {
         </>
       )}
     </CSVReader>
+    <button onClick={()=> navigate("/main")}>
+
+    </button>
+    </div>
   );
 }
 
