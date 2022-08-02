@@ -1,66 +1,69 @@
+import React, { CSSProperties } from "react";
 
-import React, { CSSProperties } from 'react';
-
-import { useCSVReader } from 'react-papaparse';
+import { useCSVReader } from "react-papaparse";
+import MainApp from "./MainAPp";
 
 // for styling csv
 const styles = {
   csvReader: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     marginBottom: 10,
   },
   browseFile: {
-    width: '20%',
+    width: "20%",
   },
   acceptedFile: {
-    border: '1px solid #ccc',
+    border: "1px solid #ccc",
     height: 45,
     lineHeight: 2.5,
     paddingLeft: 10,
-    width: '80%',
+    width: "80%",
   },
   remove: {
     borderRadius: 0,
-    padding: '0 20px',
+    padding: "0 20px",
   },
   progressBarBackgroundColor: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
 };
 
 function CsvReader() {
   const { CSVReader } = useCSVReader();
   return (
-    <CSVReader
-      onUploadAccepted={(results) => {
-        console.log('---------------------------');
-        console.log(results);
-        console.log('---------------------------');
-      }}
-    >
-      {({
-        getRootProps,
-        acceptedFile,
-        ProgressBar,
-        getRemoveFileProps,
-      }) => (
-        <>
-          <div style={styles.csvReader}>
-            <button type='button' {...getRootProps()} style={styles.browseFile}>
-              Browse file
-            </button>
-            <div style={styles.acceptedFile}>
-              {acceptedFile && acceptedFile.name}
+    <div>
+      <CSVReader
+        onUploadAccepted={(results) => {
+          console.log("---------------------------");
+          console.log(results);
+          console.log("---------------------------");
+        }}
+      >
+        {({ getRootProps, acceptedFile, ProgressBar, getRemoveFileProps }) => (
+          <>
+            <div style={styles.csvReader}>
+              <button
+                type="button"
+                {...getRootProps()}
+                style={styles.browseFile}
+              >
+                Browse file
+              </button>
+              <div style={styles.acceptedFile}>
+                {acceptedFile && acceptedFile.name}
+              </div>
+              <button {...getRemoveFileProps()} style={styles.remove}>
+                Remove
+              </button>
             </div>
-            <button {...getRemoveFileProps()} style={styles.remove}>
-              Remove
-            </button>
-          </div>
-          <ProgressBar style={styles.progressBarBackgroundColor} />
-        </>
-      )}
-    </CSVReader>
+            <ProgressBar style={styles.progressBarBackgroundColor} />
+          </>
+        )}
+      </CSVReader>
+      {/* add here just for testing */}
+      <MainApp />
+    </div>
   );
 }
 
