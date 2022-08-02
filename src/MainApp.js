@@ -29,6 +29,7 @@ const MainApp = (props) => {
                 <TableCell>Name</TableCell>
                 <TableCell align="right">PTO</TableCell>
                 <TableCell align="right">Sick Days</TableCell>
+                <TableCell align="right">Bereavement</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -40,6 +41,7 @@ const MainApp = (props) => {
                   <TableCell>{row.username}</TableCell>
                   <TableCell align="right">{row.pto}</TableCell>
                   <TableCell align="right">{row.sickDays}</TableCell>
+                  <TableCell align="right">{row.bereavement}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -52,10 +54,10 @@ const MainApp = (props) => {
 
 // create the data to put into the table
 // returns and obj
-const createData = (username, pto, sickDays) => {
-  return { username, pto, sickDays };
+const createData = (username, pto, sickDays, bereavement) => {
+  return { username, pto, sickDays, bereavement };
 };
 
-const rows = [createData("plooft", "2", "3")];
+const rows = [createData("plooft", "2", "3", "2")];
 
 export default MainApp;
