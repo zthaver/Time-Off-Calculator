@@ -3,6 +3,7 @@ import React, { CSSProperties } from 'react';
 
 import { useCSVReader } from 'react-papaparse';
 
+// for styling csv
 const styles = {
   csvReader: {
     display: 'flex',
