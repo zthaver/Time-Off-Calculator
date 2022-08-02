@@ -1,19 +1,8 @@
-import React, { CSSProperties } from "react";
-
-<<<<<<< HEAD
-import React from 'react';
-import MainUi from './MainUI';
-import { useCSVReader } from 'react-papaparse';
-
-import {Routes, Route, useNavigate, Switch} from 'react-router-dom';
-
-
-=======
+import React from "react";
 import { useCSVReader } from "react-papaparse";
-import MainApp from "./MainApp";
 
-// for styling csv
->>>>>>> 1f77cb58a22274142006a7c0a2dead36cda868cb
+import { Routes, Route, useNavigate, Switch } from "react-router-dom";
+
 const styles = {
   csvReader: {
     display: "flex",
@@ -43,25 +32,18 @@ function CsvReader() {
   const { CSVReader } = useCSVReader();
   let navigate = useNavigate();
   return (
-    <div>
-<<<<<<< HEAD
     <CSVReader
       onUploadAccepted={(results) => {
-        console.log('---------------------------');
+        console.log("---------------------------");
         console.log(results);
-        console.log('---------------------------');
-       navigate("/main",{replace:true})
+        console.log("---------------------------");
+        navigate("/main", { replace: true });
       }}
     >
-      {({
-        getRootProps,
-        acceptedFile,
-        ProgressBar,
-        getRemoveFileProps,
-      }) => (
+      {({ getRootProps, acceptedFile, ProgressBar, getRemoveFileProps }) => (
         <>
           <div style={styles.csvReader}>
-            <button type='button' {...getRootProps()} style={styles.browseFile}>
+            <button type="button" {...getRootProps()} style={styles.browseFile}>
               Browse file
             </button>
             <div style={styles.acceptedFile}>
@@ -75,42 +57,6 @@ function CsvReader() {
         </>
       )}
     </CSVReader>
-    <button onClick={()=> navigate("/main")}>
-
-    </button>
-=======
-      <CSVReader
-        onUploadAccepted={(results) => {
-          console.log("---------------------------");
-          console.log(results);
-          console.log("---------------------------");
-        }}
-      >
-        {({ getRootProps, acceptedFile, ProgressBar, getRemoveFileProps }) => (
-          <>
-            <div style={styles.csvReader}>
-              <button
-                type="button"
-                {...getRootProps()}
-                style={styles.browseFile}
-              >
-                Browse file
-              </button>
-              <div style={styles.acceptedFile}>
-                {acceptedFile && acceptedFile.name}
-              </div>
-              <button {...getRemoveFileProps()} style={styles.remove}>
-                Remove
-              </button>
-            </div>
-            <ProgressBar style={styles.progressBarBackgroundColor} />
-          </>
-        )}
-      </CSVReader>
-      {/* add here just for testing */}
-      <MainApp />
->>>>>>> 1f77cb58a22274142006a7c0a2dead36cda868cb
-    </div>
   );
 }
 

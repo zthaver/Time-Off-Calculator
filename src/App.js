@@ -6,25 +6,23 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-  
 
-import MainUi from "./MainUI";
+import MainApp from "./MainApp";
 import CsvReader from "./CsvReader";
-  
+
 function App() {
   return (
     <>
       {/* This is the alias of BrowserRouter i.e. Router */}
-          {/* This route is for home component 
+      {/* This route is for home component 
           with exact path "/", in component props 
           we passes the imported component*/}
-          <Routes>
-          <Route exact path="/" element={<CsvReader />} />
-          <Route path="/main" element={<MainUi />} />
-        </Routes>
-
+      <Routes>
+        <Route exact path="/" element={<CsvReader />} />
+        <Route path="/main" element={<MainApp />} />
+      </Routes>
     </>
   );
 }
-  
+
 export default App;
