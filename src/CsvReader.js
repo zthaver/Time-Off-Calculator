@@ -1,4 +1,4 @@
-import './App.css';
+
 import React, { CSSProperties } from 'react';
 
 import { useCSVReader } from 'react-papaparse';
