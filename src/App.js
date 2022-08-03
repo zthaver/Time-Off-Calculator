@@ -12,7 +12,6 @@ import CsvReader from "./CsvReader";
 
 function App() {
   const [userData, setUserData] = React.useState(new Map());
-  console.log(userData);
   return (
     <>
       {/* This is the alias of BrowserRouter i.e. Router */}
@@ -25,7 +24,7 @@ function App() {
           path="/"
           element={<CsvReader setUserData={setUserData} />}
         />
-        <Route path="/main" element={<MainApp />} />
+        <Route path="/main" element={<MainApp userData={userData} />} />
       </Routes>
     </>
   );
